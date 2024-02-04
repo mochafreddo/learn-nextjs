@@ -1,5 +1,6 @@
 import Movie from "@/components/movie";
 import styles from "@/styles/home.module.css";
+import { API_URL } from "../constants";
 
 export const metadata = {
   title: "Home",
@@ -12,7 +13,6 @@ interface MovieType {
 }
 
 async function getMovies(): Promise<MovieType[]> {
-  const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
   const response = await fetch(API_URL);
   const json = (await response.json()) as MovieType[];
   return json;

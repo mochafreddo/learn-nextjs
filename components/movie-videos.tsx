@@ -1,3 +1,4 @@
+import { API_URL } from "@/app/constants";
 import styles from "@/styles/movie-videos.module.css";
 
 interface Video {
@@ -7,7 +8,6 @@ interface Video {
 }
 
 async function getVideos(id: string): Promise<Video[]> {
-  const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
   const response = await fetch(`${API_URL}/${id}/videos`);
   const videos: Video[] = await response.json();
   return videos;

@@ -1,8 +1,8 @@
+import { API_URL } from "@/app/constants";
 import potato from "@/styles/movie-info.module.css";
 import Image from "next/image";
 
 export async function getMovie(id: string) {
-  const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
   const response = await fetch(`${API_URL}/${id}`);
   return response.json();
 }
