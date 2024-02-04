@@ -5,12 +5,16 @@ export const metadata = {
   title: "Home",
 };
 
-export const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
+interface MovieType {
+  id: string;
+  poster_path: string;
+  title: string;
+}
 
-async function getMovies() {
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
+async function getMovies(): Promise<MovieType[]> {
+  const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
   const response = await fetch(API_URL);
-  const json = await response.json();
+  const json = (await response.json()) as MovieType[];
   return json;
 }
 
@@ -18,7 +22,7 @@ export default async function HomePage() {
   const movies = await getMovies();
   return (
     <div className={styles.container}>
-      {movies.map((movie) => (
+      {movies.map((movie: MovieType) => (
         <Movie
           key={movie.id}
           id={movie.id}

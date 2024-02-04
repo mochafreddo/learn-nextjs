@@ -1,7 +1,8 @@
-import { API_URL } from "@/app/(home)/page";
 import potato from "@/styles/movie-info.module.css";
+import Image from "next/image";
 
 export async function getMovie(id: string) {
+  const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
   const response = await fetch(`${API_URL}/${id}`);
   return response.json();
 }
@@ -10,10 +11,14 @@ export default async function MovieInfo({ id }: { id: string }) {
   const movie = await getMovie(id);
   return (
     <div className={potato.container}>
-      <img
-        src={movie.poster_path}
+      <Image
         className={potato.poster}
+        src={movie.poster_path}
         alt={movie.title}
+        sizes="100vw"
+        style={{ width: "100%", height: "auto" }}
+        width={364}
+        height={546}
       />
       <div className={potato.info}>
         <h1 className={potato.title}>{movie.title}</h1>
